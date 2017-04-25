@@ -1,0 +1,36 @@
+{
+  "name": "mage-tpl-mocha",
+  "version": "0.0.1",
+  "description": "Mocha setup template for MAGE",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "echo 'Run unit tests and check coverage level' && nyc mocha -R mocha-reporter ./test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stelcheck/mage-tpl-mocha.git"
+  },
+  "keywords": [
+    "mage",
+    "tpl",
+    "mocha"
+  ],
+  "author": "Marc Trudel <mtrudel@wizcorp.jp>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stelcheck/mage-tpl-mocha/issues"
+  },
+  "nyc": {
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "include": [
+      "lib/*.js"
+    ],
+    "cache": "true",
+    "instrument": "true",
+    "report-dir": "./coverage-report"
+  },
+  "homepage": "https://github.com/stelcheck/mage-tpl-mocha#readme"
+}
