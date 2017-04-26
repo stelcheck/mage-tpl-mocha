@@ -1,4 +1,5 @@
 var cp = require('child_process');
+var readline = require('readline')
 
 var packages = [
   'mocha',
@@ -7,13 +8,21 @@ var packages = [
   'nyc'
 ]
 
-exports.setup = function (callback) {
+function log(stream, logger) {
+  readline.createInterface({
+    input: stream
+  }).on('line', logger)
+}
+
+exports.setup = function (mage, options, callback) {
+  const logger = mage.core.logger
   const npm = cp.spawn('npm', [
     'install',
     '--save-dev'
   ].concat(packages))
 
-  npm.stdout.pipe(process.stdout)
-  npm.stderr.pipe(process.stderr)
+  log(npm.stdout, logger.debug.bind(logger))
+  log(npm.stderr, logger.warning.bind(logger))
+
   npm.on('exit', callback)
 }
